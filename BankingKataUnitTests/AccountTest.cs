@@ -1,6 +1,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BankingKata;
 using Xunit;
+using System.Threading;
+using System.Collections.Generic;
 
 namespace BankingKataUnitTests
 {
@@ -39,6 +41,43 @@ namespace BankingKataUnitTests
             // Act
 
             account.Withdraw(amountToWithdraw);
+
+            // Assert
+
+            Xunit.Assert.Equal(expectedBalance, account.balance);
+        }
+
+
+        [TestMethod]
+        [DataRow(500, 100, 0)]
+        [DataRow(230, 70, 20)]
+        [DataRow(320, 100, 20)]
+        public void Withdraw_BalanceDecreseasConcurrentlyWhenMultipleThreadsAreLaunched(int balance, int amountToWithdraw, int expectedBalance)
+        {
+            // Arrange
+
+            List<Thread> threads = new List<Thread>();
+            Account account = new Account(balance);
+
+            // Creating threads
+
+            for (int i = 0; i < 15; i++)
+            {
+                threads.Add(
+                    new Thread(
+                        new ThreadStart(() =>
+                            {
+                                // Act
+                                account.Withdraw(amountToWithdraw);
+                            })
+                        )
+                    );
+            };
+
+            foreach(Thread thread in threads)
+            {
+                thread.Start();
+            }
 
             // Assert
 

@@ -11,7 +11,15 @@ namespace BankingKata
 
         public override int Execute()
         {
-            Balance = Balance - Amount;
+            object l = new Object();
+
+            lock (l) {
+                
+                if(Balance - Amount >= 0)
+                {
+                    Balance = Balance - Amount;
+                }
+            }
 
             return Balance;
         }
