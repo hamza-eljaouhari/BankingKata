@@ -15,11 +15,10 @@ namespace BankingKataUnitTests
         {
             // Arrange
             Account account = new Account(balance);
-            IRegistryRecord deposit = new Deposit(account.balance, amountToDeposit);
-
+            
             // Act
 
-            account.balance = deposit.Execute();
+            account.Deposit(amountToDeposit);
 
             // Assert
 
@@ -35,11 +34,11 @@ namespace BankingKataUnitTests
         {
             // Arrange
             Account account = new Account(balance);
-            IRegistryRecord withdrawal = new Withdrawal(account.balance, amountToWithdraw);
+
 
             // Act
 
-            account.balance = withdrawal.Execute();
+            account.Withdraw(amountToWithdraw);
 
             // Assert
 
