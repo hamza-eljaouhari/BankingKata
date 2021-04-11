@@ -5,7 +5,7 @@ using System.Text;
 namespace BankingKata
 {
     public class Withdrawal : RegistryRecord, IRegistryRecord {
-        public Withdrawal(int balance, int amount) : base(balance, amount)
+        public Withdrawal(int balance, int amount, DateTime datetime) : base(balance, amount, datetime)
         {
         }
 

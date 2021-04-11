@@ -15,11 +15,11 @@ namespace BankingKata
         protected int _balance;
         public int Balance { get => _balance; set => _balance = value; }
 
-        public RegistryRecord(int balance, int amount)
+        public RegistryRecord(int balance, int amount, DateTime datetime)
         {
             Balance = balance;
             Amount = amount;
-            Datetime = DateTime.Now;
+            Datetime = datetime;
         }
 
         public abstract int Execute();

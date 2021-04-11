@@ -6,7 +6,7 @@ namespace BankingKata
 {
     public class Deposit : RegistryRecord
     {
-        public Deposit(int balance, int amount) : base(balance, amount)
+        public Deposit(int balance, int amount, DateTime datetime) : base(balance, amount, datetime)
         {
         }
 

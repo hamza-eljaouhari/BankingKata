@@ -16,7 +16,7 @@ namespace BankingKata
 
         public void Deposit(int amount)
         {
-           IRegistryRecord deposit = new Deposit(balance, amount);
+           IRegistryRecord deposit = new Deposit(balance, amount, DateTime.Now);
 
             balance = deposit.Execute();
 
@@ -25,7 +25,7 @@ namespace BankingKata
 
         public void Withdraw(int amount)
         {
-            IRegistryRecord withdrawal = new Withdrawal(balance, amount);
+            IRegistryRecord withdrawal = new Withdrawal(balance, amount, DateTime.Now);
 
             balance = withdrawal.Execute();
 
